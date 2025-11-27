@@ -4,5 +4,5 @@ DAY 1(27.11.2025)
 1.created file and folder structure as you can see.
 2.tried just launching the window with black blackground using mlx.
 3.we have to use this command to link minilibx library to our project !
-              -I minilibx-linux minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm -lz
+              cc main.c -I minilibx-linux minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm -lz
 4.Makefile temporarily empty.
