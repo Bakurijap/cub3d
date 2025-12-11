@@ -30,7 +30,30 @@ void	check_name(int c, char **v)
 	}
 }
 
-// void	open_test(char *map)
-// {
+void	open_test(char *map)
+{
+	int		fd;
+	char	buf[1];
+	int		ret;
 
-// }
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error\nCannot open file\n", 2);
+		exit(1);
+	}
+	ret = read(fd, buf, 1);
+	if (ret == -1)
+	{
+		ft_putstr_fd("Error\nRead failed\n", 2);
+		close(fd);
+		exit(1);
+	}
+	if (ret == 0)
+	{
+		ft_putstr_fd("Error\nEmpty file\n", 2);
+		close(fd);
+		exit(1);
+	}
+	close(fd);
+}
