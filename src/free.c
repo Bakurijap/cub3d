@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabou-da <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 09:58:43 by yabou-da          #+#    #+#             */
-/*   Updated: 2024/12/09 10:43:07 by yabou-da         ###   ########.fr       */
+/*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
+/*   Updated: 2025/11/27 18:53:22 by yabou-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
-
-# include "libft.h"
-# include "mlx.h"
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-void	check_name(int c, char **v);
-void	open_test(char *map);
-
-#endif
+#include "../include/cube3d.h"

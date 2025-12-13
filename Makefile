@@ -25,7 +25,8 @@ LDLIBS      = -lft -lmlx -lm -lXext -lX11
 # ---------------------------------------------------------------------------- #
 
 SRCS    = src/main.c \
-		src/Parsing/check_map.c
+		src/Parsing/check_map.c \
+		src/Parsing/check_file.c
 
 OBJS    = $(SRCS:.c=.o)
 
