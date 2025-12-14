@@ -25,6 +25,10 @@ LDLIBS      = -lft -lmlx -lm -lXext -lX11
 # ---------------------------------------------------------------------------- #
 
 SRCS    = src/main.c \
+		src/free.c \
+		src/node.c \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
 		src/Parsing/check_map.c \
 		src/Parsing/check_file.c
 

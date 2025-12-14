@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabou-da <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:45:57 by yabou-da          #+#    #+#             */
-/*   Updated: 2025/11/27 18:46:19 by yabou-da         ###   ########.fr       */
+/*   Updated: 2025/12/14 17:15:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ int	close_window(void *param)
 
 int	main(int c, char **v)
 {
+	t_line	*lst;
+	
 	check_name(c, v);
 	open_test(v[1]);
+	lst = file_to_line_list(v[1]);
+	print_line_list(lst);
+	free_line_list(&lst);
 	return (0);
 }
 
