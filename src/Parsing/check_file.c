@@ -12,6 +12,7 @@
 
 #include "../../include/cube3d.h"
 
+// verify if the name of the map is ok
 void	check_name(int c, char **v)
 {
 	int	len;
@@ -29,7 +30,7 @@ void	check_name(int c, char **v)
 		exit(1);
 	}
 }
-
+// open the file to test if it's ok
 void	open_test(char *map)
 {
 	int		fd;

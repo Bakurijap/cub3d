@@ -12,6 +12,7 @@
 
 #include "../../include/cube3d.h"
 
+// open the file and add lines to a list
 t_line	*file_to_line_list(char *path)
 {
 	int		fd;
@@ -37,6 +38,8 @@ t_line	*file_to_line_list(char *path)
 	close(fd);
 	return (lst);
 }
+
+
 
 void	print_line_list(t_line *lst)
 {
