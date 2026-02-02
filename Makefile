@@ -27,10 +27,15 @@ LDLIBS      = -lft -lmlx -lm -lXext -lX11
 SRCS    = src/main.c \
 		src/free.c \
 		src/node.c \
+		src/file.c \
+		src/init.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
 		src/Parsing/check_map.c \
-		src/Parsing/check_file.c
+		src/Parsing/check_file.c \
+		src/Parsing/parse_utils_1.c \
+		src/Parsing/parse_utils.c \
+		src/Parsing/parse_main.c
 
 OBJS    = $(SRCS:.c=.o)
 
