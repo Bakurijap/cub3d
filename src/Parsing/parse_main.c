@@ -6,15 +6,19 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:30:18 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/03 00:29:40 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:00:10 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube3d.h"
 
-void error_and_exit(void)
+void error_and_exit(t_data *data,char *msg)
 {
-    fprintf(stderr, "Error\n");
+    if (msg)
+        fprintf(stderr, "%s", msg);
+    else
+        fprintf(stderr, "Error\n");
+    free_data(data);
     exit(EXIT_FAILURE);
 }
 
@@ -43,21 +47,15 @@ void	parse_data(t_data *data)
 			continue;
 		}
 		if (!parse_element_line(data, current->value))
-			error_and_exit();
-		current = current->next;
+            return ;	
+        current = current->next;
 	}
 	if (!check_elements_complete(data))
-	{
-		write(2, "Incomplete elements\n", 21);
-		error_and_exit();
-	}
+		error_and_exit(data,"Incomplete elements\n");
 	while (current && is_line_empty(current->value))
 		current = current->next;
 	if (!current)
-	{
-		write(2, "Missing map\n", 13);
-		error_and_exit();
-	}
+		error_and_exit(data,"Missing map\n");
 	data->map_start = current;
 	printf("Map starts at line: %s\n", data->map_start->value);
 }

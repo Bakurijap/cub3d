@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:32:12 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/03 00:31:27 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:55:23 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ int	parse_texture(t_data *data, int type, char *line)
 {
 	char	*path;
 
-	// if (type == E_NO)
-	// 	path = skip_id_and_spaces(line, 2);
-	// else
-	// 	path = skip_id_and_spaces(line, 2);
 	path = skip_id_and_spaces(line, 2);
     if (!*path)
 		return (0);
@@ -37,6 +33,7 @@ int	parse_texture(t_data *data, int type, char *line)
 		data->elements.ea = path;
 	return (1);
 }
+
 // Parses floor and ceiling colors
 int	parse_color(t_data *data, int type, char *line)
 {
@@ -48,18 +45,23 @@ int	parse_color(t_data *data, int type, char *line)
 
 	str = skip_id_and_spaces(line, 1);
 	rgb = ft_split(str, ',');
+    trim_rgb_values(rgb);
+    validate_rgb_format(rgb, data);
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 		return (0);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (0);
+    {
+        ft_free_split(rgb);
+        error_and_exit(data,"Color values must be between 0 and 255\n");
+    }
 	if (type == E_F)
 		data->elements.f_color = (r << 16) | (g << 8) | b;
 	else
 		data->elements.c_color = (r << 16) | (g << 8) | b;
-	// ft_free_split(rgb); // you must implement this
+	ft_free_split(rgb);
 	return (1);
 }
 
@@ -91,14 +93,10 @@ int	parse_element_line(t_data *data, char *line) // returns 1 on success, 0 on f
 	int	type;
 
 	type = get_element_type(line);
-    // printf("Element type: %d\n", type); // Debug print
 	if (type == 0)
 		return (1);
 	if (data->elements.set_flags[type]) // already set ?
-	{
-        write(2, "Duplicate element found\n", 25);
-        return (0);           
-    }
+        error_and_exit(data,"Duplicate element found\n");        
 	data->elements.set_flags[type] = 1; // mark as set
 	if (type >= E_NO && type <= E_EA) // texture types
 		return (parse_texture(data, type, line));

@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/01/24 17:52:22 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:48:54 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,30 @@ void	free_line_list(t_line **lst)
 	*lst = NULL;
 }
 
+void	free_elements(t_data *data)
+{
+    if (!data)
+    {
+        write(2, "free_elements: data is NULL\n", 29);
+        return ;
+    }
+    if (data->elements.no)
+		free(data->elements.no);
+	if (data->elements.so)
+		free(data->elements.so);
+	if (data->elements.we)
+		free(data->elements.we);
+	if (data->elements.ea)
+		free(data->elements.ea);
+}
+
+
 void    free_data(t_data *data)
 {
     if (!data)
         return ;
     free_line_list(&data->line);
+    free_elements(data);
 }
 
 void ft_free_split(char **split)

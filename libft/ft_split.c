@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:50:12 by yabou-da          #+#    #+#             */
-/*   Updated: 2024/12/04 15:36:28 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/03 15:18:55 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
+
 
 static void	*ft_free(char **str)
 {
@@ -25,29 +27,25 @@ static void	*ft_free(char **str)
 	return (NULL);
 }
 
-static char	**allocation(char const *s, char c)
+static char **allocation(char const *s, char c)
 {
-	int		i;
-	int		n;
-	char	**split;
+    int i = 0;
+    int n = 0;
+    char **split;
 
-	i = 0;
-	n = 0;
-	while (s[i])
-	{
-		if ((s[i - 1] == c || s[i - 1] == '\0') && (s[i] != c && s[i] != '\0'))
-		{
-			n++;
-			i++;
-		}
-		else
-			i++;
-	}
-	split = malloc((n + 1) * sizeof(char *));
-	if (!split)
-		return (NULL);
-	return (split);
+    while (s[i])
+    {
+        if ((i == 0 || s[i - 1] == c) && (s[i] != c))
+            n++;
+        i++;
+    }
+
+    split = malloc((n + 1) * sizeof(char *));
+    if (!split)
+        return NULL;
+    return split;
 }
+
 
 static char	*append(char const *s, char c, int *k)
 {
@@ -80,18 +78,18 @@ char	**ft_split(char const *s, char c)
 	split = allocation(s, c);
 	if (split == NULL)
 		return (NULL);
-	while (s[k])
-	{
-		if ((s[k - 1] == c || k == 0) && (s[k] != c && s[k] != '\0'))
-		{
-			mot = append(s, c, &k);
-			if (mot == NULL)
-				return (ft_free(split));
-			split[i++] = mot;
-		}
-		else
-			k++;
-	}
+    while (s[k])
+    {
+        if ((k == 0 || s[k - 1] == c) && s[k] != c)
+        {
+            mot = append(s, c, &k);
+            if (!mot)
+                return (ft_free(split));
+            split[i++] = mot;
+        }
+        else
+            k++;
+    }
 	split[i] = NULL;
 	return (split);
 }

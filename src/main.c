@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:45:57 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/01/24 18:01:52 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:31:46 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	printf("Floor color: 0x%06X\n", data.elements.f_color);
 	printf("Ceiling color: 0x%06X\n", data.elements.c_color);
 
-	free_line_list(&data.line);
+	free_data(&data);
 	// also free allocated strings in elements here to avoid leaks
 
 	return (0);

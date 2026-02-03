@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:58:43 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/02 22:27:16 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:55:53 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	free_line_list(t_line **lst);
 // free
 void    free_data(t_data *data);
 void	ft_free_split(char **split);
-
+void    error_and_exit(t_data *data,char *msg);
 // init
 void    init_data(t_data *data);
 
@@ -83,4 +83,7 @@ int	    get_element_type(char *line);
 char	*skip_id_and_spaces(char *line, int id_len);
 int	    parse_texture(t_data *data, int type, char *line);
 int	    parse_color(t_data *data, int type, char *line);
+void    validate_rgb_format(char **rgb,t_data *data);
+int     is_number(char *s);
+void    trim_rgb_values(char **rgb);
 #endif
