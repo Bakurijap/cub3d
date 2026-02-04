@@ -2,6 +2,9 @@
 #                                   VARIABLES                                  #
 # **************************************************************************** #
 
+GREEN  = \033[0;32m
+RED   = \033[0;31m
+RESET = \033[0m
 NAME    = cub3D
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
@@ -35,7 +38,9 @@ SRCS    = src/main.c \
 		src/Parsing/check_file.c \
 		src/Parsing/parse_utils_1.c \
 		src/Parsing/parse_utils.c \
-		src/Parsing/parse_main.c
+		src/Parsing/parse_main.c \
+		src/Validation/validation.c \
+		src/Validation/validation_utils.c
 
 OBJS    = $(SRCS:.c=.o)
 
@@ -46,27 +51,29 @@ OBJS    = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@echo "$(GREEN)✅  $(NAME) built successfully!$(RESET)"
 
 # Compilation des .o
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # Librairie Libft
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 # MiniLibX
 $(MLX):
-	make -C $(MLX_DIR)
+	@make -C $(MLX_DIR)
 
 clean:
-	rm -rf $(OBJS)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+	@rm -rf $(OBJS)
+	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
+	@echo "$(RED)🧹  Cleaned object files!$(RESET)"
 
 fclean: clean
-	rm -rf $(NAME)
-	make fclean -C $(LIBFT_DIR)
-
+	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT_DIR)
+	@echo "$(RED)🧹  Removed $(NAME)!$(RESET)"
 re: fclean all

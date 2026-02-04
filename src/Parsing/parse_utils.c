@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:32:12 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/03 16:55:23 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:43:50 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	parse_texture(t_data *data, int type, char *line)
 	path = skip_id_and_spaces(line, 2);
     if (!*path)
 		return (0);
-	path = ft_strtrim(path, " \n");
+    path = ft_strtrim(path, " \n\t\r");
 	if (!path)
 		return (0);
 	if (type == E_NO)

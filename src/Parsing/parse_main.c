@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:30:18 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/03 16:00:10 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:46:13 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ void	parse_data(t_data *data)
 	if (!current)
 		error_and_exit(data,"Missing map\n");
 	data->map_start = current;
-	printf("Map starts at line: %s\n", data->map_start->value);
 }

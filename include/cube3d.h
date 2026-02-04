@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:58:43 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/03 16:55:53 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:07:54 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,10 @@ int	    parse_color(t_data *data, int type, char *line);
 void    validate_rgb_format(char **rgb,t_data *data);
 int     is_number(char *s);
 void    trim_rgb_values(char **rgb);
+
+//validation 
+void validate_textures(t_data *data);
+int is_empty_string(char *s);
+int has_xpm_extension(char *path);
+void validate_each_texture(t_data *data, char *path);
 #endif

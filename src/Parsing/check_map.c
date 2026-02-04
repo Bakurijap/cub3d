@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2025/12/14 16:49:20 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/04 15:42:28 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_line	*file_to_line_list(char *path)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break ;
+            break ;
 		if (!add_line(&lst, line))
 		{
 			close(fd);
