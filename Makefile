@@ -7,7 +7,8 @@ RED   = \033[0;31m
 RESET = \033[0m
 NAME    = cub3D
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror 
+
 
 # Includes
 INC     = -Iinclude -Ilibft -Iminilibx-linux
@@ -34,11 +35,13 @@ SRCS    = src/main.c \
 		src/init.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
-		src/Parsing/check_map.c \
+		src/Parsing/file_to_line.c \
 		src/Parsing/check_file.c \
 		src/Parsing/parse_utils_1.c \
 		src/Parsing/parse_utils.c \
 		src/Parsing/parse_main.c \
+		src/Parsing/create_map_utils.c \
+		src/Parsing/create_map.c \
 		src/Validation/validation.c \
 		src/Validation/validation_utils.c
 

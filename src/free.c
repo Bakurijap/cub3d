@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/03 15:48:54 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:32:16 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ void	free_elements(t_data *data)
 		free(data->elements.ea);
 }
 
+void	free_map(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 
 void    free_data(t_data *data)
 {
@@ -54,6 +69,7 @@ void    free_data(t_data *data)
         return ;
     free_line_list(&data->line);
     free_elements(data);
+    free_map(data->map);
 }
 
 void ft_free_split(char **split)

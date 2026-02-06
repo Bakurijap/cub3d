@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2025/12/14 16:41:20 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/06 13:10:01 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_name(int c, char **v)
 
 	if (c != 2)
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
+		ft_putstr_fd("Error\nInvalid number of arguments", 2);
 		exit(1);
 	}
 	len = ft_strlen(v[1]);

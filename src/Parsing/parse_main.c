@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:30:18 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/04 14:46:13 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:30:13 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void error_and_exit(t_data *data,char *msg)
 {
     if (msg)
-        fprintf(stderr, "%s", msg);
+        fprintf(stderr, "%s\n", msg);
     else
         fprintf(stderr, "Error\n");
     free_data(data);
@@ -30,6 +30,20 @@ static int   check_elements_complete(t_data *data)
         return (0);
     return (1);
 }
+
+// void print_map(t_data *data)
+// {
+//     t_line *current = data->map_start;
+//     int line_num = 1;
+
+//     printf("Map starts at line %d:\n", line_num);
+//     while (current)
+//     {
+//         printf("%s", current->value);
+//         current = current->next;
+//         line_num++;
+//     }
+// }
 
 void	parse_data(t_data *data)
 {
@@ -51,10 +65,12 @@ void	parse_data(t_data *data)
         current = current->next;
 	}
 	if (!check_elements_complete(data))
-		error_and_exit(data,"Incomplete elements\n");
+		error_and_exit(data,"Incomplete elements");
 	while (current && is_line_empty(current->value))
 		current = current->next;
 	if (!current)
-		error_and_exit(data,"Missing map\n");
+		error_and_exit(data,"Missing map");
 	data->map_start = current;
+    if(create_map(data,current) == 0) // detects and creates map,stores in data structure as **map
+        error_and_exit(data,"Failed to create map");
 }

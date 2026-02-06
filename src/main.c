@@ -6,42 +6,18 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:45:57 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/04 15:59:36 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:29:28 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube3d.h"
+#include "cube3d.h"
+#include <stdio.h>
 
 int	close_window(void *param)
 {
 	(void)param;
 	exit(0);
-}
-
-// int	main(int c, char **v)
-// {
-// 	t_data    data;
-
-//     check_file(c, v, &data);
-//     init_data(&data);
-//     parse_data(&data);
-//     free_data(&data);
-//     return (0);
-// }
-#include "cube3d.h"
-#include <stdio.h>
-
-void check_filetype(char *filename)
-{
-    int fd;
-    int len;
-    
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-        error_and_exit(NULL, "Error: Cannot open file.\n");
-    len = ft_strlen(filename);
-    if (len < 4 || ft_strncmp(filename + len - 4, ".cub", 4) != 0)
-        error_and_exit(NULL, "Error: Invalid file type. Expected a .cub file.\n");
 }
 
 int	main(int argc, char **argv)
@@ -58,7 +34,7 @@ int	main(int argc, char **argv)
 	data.line = file_to_line_list(argv[1]);
 	parse_data(&data);
     validate_textures(&data);
-    
+
 	printf("NO texture path: %s\n", data.elements.no);
 	printf("SO texture path: %s\n", data.elements.so);
 	printf("WE texture path: %s\n", data.elements.we);

@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:58:43 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/04 15:07:54 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:39:06 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 # include "libft.h"
 # include "mlx.h"
 # include "../gnl/get_next_line.h"
-# include <stdlib.h>
+# include <errno.h>
 # include <fcntl.h>
-# include <unistd.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 #define E_NO 1
 #define E_SO 2
@@ -46,22 +54,40 @@ typedef struct s_elements
     
 }	t_elements;
 
+typedef struct s_mapinfo
+{
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+	int			index_end_of_map;
+}	t_mapinfo;
+
+
 typedef struct s_data 
 {
     t_line       *line;
     t_elements  elements;
     t_line		*map_start;
+    t_mapinfo  mapinfo;
+    char         **map;
+    int        map_width;
+    int        map_height;
 }   t_data;
 
 // check_file
 void    check_file(int c, char **v, t_data *data);
 void	check_name(int c, char **v);
 void	open_test(char *map);
-
+void    check_filetype(char *filename);
 // check_map
 t_line	*file_to_line_list(char *path);
 void	print_line_list(t_line *lst);
-
+int     create_map(t_data *data, t_line *current);
+int     is_map_line(char *line);
+int find_longest_map_line(t_line *current);
 // node
 t_line	*create_line(char *value);
 int		add_line(t_line **lst, char *value);

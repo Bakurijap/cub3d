@@ -6,7 +6,7 @@
 /*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 16:32:12 by bjaparid          #+#    #+#             */
-/*   Updated: 2026/02/04 14:43:50 by bjaparid         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:09:23 by bjaparid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	parse_color(t_data *data, int type, char *line)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
     {
         ft_free_split(rgb);
-        error_and_exit(data,"Color values must be between 0 and 255\n");
+        error_and_exit(data,"Color values must be between 0 and 255");
     }
 	if (type == E_F)
 		data->elements.f_color = (r << 16) | (g << 8) | b;
