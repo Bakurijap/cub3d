@@ -35,16 +35,17 @@ SRCS    = src/main.c \
 		src/init.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
-		src/Parsing/file_to_line.c \
-		src/Parsing/check_file.c \
-		src/Parsing/parse_utils_1.c \
-		src/Parsing/parse_utils.c \
-		src/Parsing/parse_main.c \
-		src/Parsing/create_map_utils.c \
-		src/Parsing/create_map.c \
-		src/Validation/validation.c \
-		src/Validation/validation_utils.c
-
+		src/Parsing/3_file_to_line.c \
+		src/Parsing/2_check_file.c \
+		src/Parsing/4_parsing_element.c \
+		src/Parsing/5_parsing_color.c \
+		src/Parsing/6_parsing_texture.c \
+		src/Parsing/8_create_map_utils.c \
+		src/Parsing/8_map_validation.c \
+		src/Parsing/8_create_map.c \
+		src/Parsing/8_check_char.c \
+		src/Parsing/parsing_utils.c \
+		src/Parsing/parsing_main.c
 OBJS    = $(SRCS:.c=.o)
 
 # **************************************************************************** #

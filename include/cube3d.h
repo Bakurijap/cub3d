@@ -51,7 +51,6 @@ typedef struct s_elements
 	int		f_color;
 	int		c_color;
 	int		set_flags[6];
-    
 }	t_elements;
 
 typedef struct s_mapinfo
@@ -65,17 +64,78 @@ typedef struct s_mapinfo
 	int			index_end_of_map;
 }	t_mapinfo;
 
+// Connection a minilibix + window
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
+
+// image
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
+// texture
+typedef struct s_tex
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_tex;
+// Player
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
+	char	start_dir;
+}	t_player;
+// touche
+typedef struct s_keys
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+	int	esc;
+}	t_keys;
 
 typedef struct s_data 
 {
-    t_line       *line;
-    t_elements  elements;
-    t_line		*map_start;
-    t_mapinfo  mapinfo;
-    char         **map;
-    int        map_width;
-    int        map_height;
-}   t_data;
+	t_line		*line;
+	t_elements	elements;
+	t_line		*map_start;
+	t_mapinfo	mapinfo;
+	char		**map;
+	int			map_width;
+	int			map_height;
+	t_mlx		mlx;
+	t_img		screen;
+	t_tex		no_tex;
+	t_tex		so_tex;
+	t_tex		we_tex;
+	t_tex		ea_tex;
+	t_player	player;
+	t_keys		keys;
+}	t_data;
 
 // check_file
 void    check_file(int c, char **v, t_data *data);
@@ -102,6 +162,8 @@ void    error_and_exit(t_data *data,char *msg);
 void    init_data(t_data *data);
 
 // parse
+//void	step_4(t_data *data, t_line	*current);
+int		check_elements_complete(t_data *data);
 void    parse_data(t_data *data);
 int	    is_line_empty(char *line);
 int	    parse_element_line(t_data *data, char *line);
@@ -114,8 +176,15 @@ int     is_number(char *s);
 void    trim_rgb_values(char **rgb);
 
 //validation 
-void validate_textures(t_data *data);
-int is_empty_string(char *s);
-int has_xpm_extension(char *path);
-void validate_each_texture(t_data *data, char *path);
+void	validate_textures(t_data *data);
+int		is_empty_string(char *s);
+int		has_xpm_extension(char *path);
+void	validate_each_texture(t_data *data, char *path);
+
+void	check_map_closed(t_data *data);
+void	find_player(t_data *data);
+char	**copy_map(char **map, int height);
+void	flood_fill(t_data *data, char **map, int x, int y);
+void	check_map_characters(t_data *data);
+void	check_player_count(t_data *data);
 #endif

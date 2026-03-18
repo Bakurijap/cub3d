@@ -62,14 +62,13 @@ void	free_map(char **map)
 	free(map);
 }
 
-
-void    free_data(t_data *data)
+void	free_data(t_data *data)
 {
-    if (!data)
-        return ;
-    free_line_list(&data->line);
-    free_elements(data);
-    free_map(data->map);
+	if (!data)
+		return ;
+	free_line_list(&data->line);
+	free_elements(data);
+	free_map(data->map);
 }
 
 void ft_free_split(char **split)

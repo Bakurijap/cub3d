@@ -12,13 +12,7 @@
 
 #include "../include/cube3d.h"
 
-// check the file and store its content in a linked list
-void    check_file(int c, char **v, t_data *data)
-{
-    check_name(c, v);
-    open_test(v[1]);
-    data->line = file_to_line_list(v[1]);
-}
+
 
 static int	is_dir(char *filename)
 {
