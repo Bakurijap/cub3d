@@ -1,10 +1,13 @@
 NO textures/colorstone.xpm
 SO textures/bluestone.xpm
+
+F 164,   169,20
+C 153,204,255
+
+
+
 WE textures/greystone.xpm
 EA textures/wood.xpm
-
-F 164,169,20
-C 153,204,255
 
 111111111111111111111
 101000001000000000001

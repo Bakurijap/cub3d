@@ -12,6 +12,13 @@
 
 #include "../../include/cube3d.h"
 
+static void	assign_rgb_values(char **rgb, int *r, int *g, int *b)
+{
+	*r = ft_atoi(rgb[0]);
+	*g = ft_atoi(rgb[1]);
+	*b = ft_atoi(rgb[2]);
+}
+
 // Parses floor and ceiling colors
 int	parse_color(t_data *data, int type, char *line)
 {
@@ -27,10 +34,8 @@ int	parse_color(t_data *data, int type, char *line)
 	validate_rgb_format(rgb, data);
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 		return (0);
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	assign_rgb_values(rgb, &r, &g, &b);
+	if (!ft_atoi2(rgb[0], &r) || !ft_atoi2(rgb[1], &g) || !ft_atoi2(rgb[2], &b))
 	{
 		ft_free_split(rgb);
 		error_and_exit(data, "Color values must be between 0 and 255");
@@ -45,12 +50,15 @@ int	parse_color(t_data *data, int type, char *line)
 
 char	*skip_id_and_spaces(char *line, int id_len)
 {
-	int	i;
+	char	*ptr;
 
-	i = id_len;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	return (line + i);
+	ptr = line;
+	while (*ptr == ' ' || *ptr == '\t')
+		ptr++;
+	ptr += id_len;
+	while (*ptr == ' ' || *ptr == '\t')
+		ptr++;
+	return (ptr);
 }
 
 void	validate_rgb_format(char **rgb, t_data *data)

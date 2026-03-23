@@ -81,17 +81,17 @@ void	flood_fill(t_data *data, char **map, int x, int y)
 	if (x < 0 || y < 0 || x >= data->map_width || y >= data->map_height)
 	{
 		ft_free_split(map);
-		error_and_exit(data, "Map not closed 1");
+		error_and_exit(data, "Map not closed");
 	}
 	if (!map[y] || x >= (int) ft_strlen(map[y]))
 	{
 		ft_free_split(map);
-		error_and_exit(data, "Map not closed 2");
+		error_and_exit(data, "Map not closed");
 	}
 	if (map[y][x] == ' ')
 	{
 		ft_free_split(map);
-		error_and_exit(data, "Map not closed 3");
+		error_and_exit(data, "Map not closed");
 	}
 	if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;

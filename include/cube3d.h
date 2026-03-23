@@ -207,6 +207,7 @@ int		parse_texture(t_data *data, int type, char *line);
 int		parse_color(t_data *data, int type, char *line);
 void	validate_rgb_format(char **rgb, t_data *data);
 int		is_number(char *s);
+int		ft_atoi2(const char *str, int *out);
 void	trim_rgb_values(char **rgb);
 
 //validation 

@@ -63,3 +63,25 @@ int	has_xpm_extension(char *path)
 		return (0);
 	return (1);
 }
+
+int	ft_atoi2(const char *str, int *out)
+{
+	long	result;
+	int		i;
+
+	i = 0;
+	result = 0;
+	if (!str || !*str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		result = result * 10 + (str[i] - '0');
+		if (result > 255)
+			return (0);
+		i++;
+	}
+	*out = (int)result;
+	return (1);
+}
