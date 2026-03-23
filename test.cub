@@ -1,17 +1,14 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+                                            NO                                      ./textures/bluestone.xpm
+SO                              ./textures/colorstone.xpm
+                                                                        WE ./textures/greystone.xpm
+EA                                                                                                                                              ./textures/redbrick.xpm
 
-F 20,20,20
-C 200,200,200
+        F                   80,                                           50,                                                        30
+C                           60,                             90,                 180
 
-111111111111
-1         11
-1       1001
-1000001000000011
-10S000000001
-111111111111
-11         1
-111111111111
-m
+1111111111111111111111111
+1000110000100000000000001
+1000110000000000111111001
+1000110000000000110001001
+1000000000100S00000001001
+1111111111111111111111111

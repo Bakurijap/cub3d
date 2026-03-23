@@ -43,12 +43,12 @@ int	parse_element_line(t_data *data, char *line)
 	type = get_element_type(line);
 	if (type == 0)
 		return (1);
-	if (data->elements.set_flags[type]) // already set ?
-		error_and_exit(data,"Duplicate element found\n");        
-	data->elements.set_flags[type] = 1; // mark as set
-	if (type >= E_NO && type <= E_EA) // texture types
+	if (data->elements.set_flags[type])
+		error_and_exit(data, "Duplicate element found\n");
+	data->elements.set_flags[type] = 1;
+	if (type >= E_NO && type <= E_EA)
 		return (parse_texture(data, type, line));
-	if (type == E_F || type == E_C) // color types
+	if (type == E_F || type == E_C)
 		return (parse_color(data, type, line));
 	return (1);
 }
@@ -66,7 +66,6 @@ int	is_line_empty(char *line)
 		return (1);
 	return (0);
 }
-
 
 int	check_elements_complete(t_data *data)
 {

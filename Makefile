@@ -45,7 +45,15 @@ SRCS    = src/main.c \
 		src/Parsing/8_create_map.c \
 		src/Parsing/8_check_char.c \
 		src/Parsing/parsing_utils.c \
-		src/Parsing/parsing_main.c
+		src/Parsing/parsing_main.c \
+		src/Execution/1_init_direction.c \
+		src/Execution/2_init_mlx.c \
+		src/Execution/3_key_handler.c \
+		src/Execution/4_init_raycasting.c \
+		src/Execution/5_mouvments.c \
+		src/Execution/5_mouvments2.c \
+		src/Execution/6_init_texture.c \
+		src/Execution/7_draw_textures.c
 OBJS    = $(SRCS:.c=.o)
 
 # **************************************************************************** #

@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO textures/colorstone.xpm
+SO textures/bluestone.xpm
+WE textures/greystone.xpm
+EA textures/wood.xpm
 
 F 164,169,20
 C 153,204,255
@@ -25,6 +25,6 @@ C 153,204,255
 101011111111111010101
 100010000000000010001
 101010111011111111101
-1E1000001000000000001
+1N1000001000000000001
 111111111111111111111
 

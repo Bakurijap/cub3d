@@ -13,9 +13,9 @@
 #include "../../include/cube3d.h"
 
 // Supp \r et \n
-static char *trim_line(char *line)
+static char	*trim_line(char *line)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(line);
 	while (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
@@ -23,7 +23,7 @@ static char *trim_line(char *line)
 		line[len - 1] = '\0';
 		len--;
 	}
-	return line;
+	return (line);
 }
 
 // open the file and add lines to a list
@@ -75,4 +75,3 @@ void	print_line_list(t_line *lst)
 		lst = lst->next;
 	}
 }
-

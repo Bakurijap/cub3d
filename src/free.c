@@ -32,12 +32,12 @@ void	free_line_list(t_line **lst)
 
 void	free_elements(t_data *data)
 {
-    if (!data)
-    {
-        write(2, "free_elements: data is NULL\n", 29);
-        return ;
-    }
-    if (data->elements.no)
+	if (!data)
+	{
+		write(2, "free_elements: data is NULL\n", 29);
+		return ;
+	}
+	if (data->elements.no)
 		free(data->elements.no);
 	if (data->elements.so)
 		free(data->elements.so);
@@ -47,41 +47,48 @@ void	free_elements(t_data *data)
 		free(data->elements.ea);
 }
 
-void	free_map(char **map)
-{
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
 	free_line_list(&data->line);
 	free_elements(data);
-	free_map(data->map);
+	ft_free_split(data->map);
+	free_mlx(data);
 }
 
-void ft_free_split(char **split)
+void	ft_free_split(char **split)
 {
-    int i;
+	int	i;
 
-    if (!split)
-        return ;
-    i = 0;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+void	free_mlx(t_data *data)
+{
+	if (data->screen.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->screen.img_ptr);
+	if (data->no_tex.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->no_tex.img_ptr);
+	if (data->so_tex.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->so_tex.img_ptr);
+	if (data->we_tex.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->we_tex.img_ptr);
+	if (data->ea_tex.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->ea_tex.img_ptr);
+	if (data->mlx.win_ptr)
+		mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.win_ptr);
+	if (data->mlx.mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx.mlx_ptr);
+		free(data->mlx.mlx_ptr);
+	}
 }

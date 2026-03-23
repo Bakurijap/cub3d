@@ -56,6 +56,6 @@ void	init_player_direction(t_data *data)
 		init_west(data);
 	else
 		error_and_exit(data, "Invalid player direction");
-	data->player.move_speed = 0.05;
-	data->player.rot_speed = 0.03;
+	data->player.move_speed = 0.15;
+	data->player.rot_speed = 0.1;
 }

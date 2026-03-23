@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_file.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/06 13:10:01 by bjaparid         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   6_parsing_texture.c                               :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2025/11/27 18:53:16 by username         #+#    #+#              */
+/*   Updated: 2026/03/23 00:19:48 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube3d.h"
 
 // Skips the identifier and any following spaces in the line
+
 int	parse_texture(t_data *data, int type, char *line)
 {
 	char	*path;
 
 	path = skip_id_and_spaces(line, 2);
-    if (!*path)
+	if (!*path)
 		return (0);
-    path = ft_strtrim(path, " \n\t\r");
+	path = ft_strtrim(path, " \n\t\r");
 	if (!path)
 		return (0);
 	if (type == E_NO)
@@ -34,48 +35,46 @@ int	parse_texture(t_data *data, int type, char *line)
 	return (1);
 }
 
-void check_empty_string(t_data data)
+void	check_empty_string(t_data data)
 {
-    if(data.elements.no && is_empty_string(data.elements.no))
-    {
-        error_and_exit(&data, "Error: North texture path is empty in the .cub file.");
-    }
-    if(data.elements.so && is_empty_string(data.elements.so))
-        error_and_exit(&data, "Error: South texture path is empty in the .cub file.");
-    if(data.elements.we && is_empty_string(data.elements.we))
-        error_and_exit(&data,"Error: West texture path is empty in the .cub file.");
-    if(data.elements.ea && is_empty_string(data.elements.ea))
-        error_and_exit(&data,"Error: East texture path is empty in the .cub file");
+	if (data.elements.no && is_empty_string(data.elements.no))
+		error_and_exit(&data, "North texture path is empty");
+	if (data.elements.so && is_empty_string(data.elements.so))
+		error_and_exit(&data, "South texture path is empty");
+	if (data.elements.we && is_empty_string(data.elements.we))
+		error_and_exit(&data, "West texture path is empty in the .cub file.");
+	if (data.elements.ea && is_empty_string(data.elements.ea))
+		error_and_exit(&data, "East texture path is empty in the .cub file");
 }
 
-void check_xpm_extension(t_data *data)
+void	check_xpm_extension(t_data *data)
 {
-    if(data->elements.no && !has_xpm_extension(data->elements.no))
-        error_and_exit(data,"Error: North texture does not have .xpm extension");
-    if(data->elements.so && !has_xpm_extension(data->elements.so))
-        error_and_exit(data,"Error: South texture does not have .xpm extension");
-    if(data->elements.we && !has_xpm_extension(data->elements.we))
-        error_and_exit(data,"Error: West texture does not have .xpm extension");
-    if(data->elements.ea && !has_xpm_extension(data->elements.ea))
-        error_and_exit(data,"Error: East texture does not have .xpm extension");
+	if (data->elements.no && !has_xpm_extension(data->elements.no))
+		error_and_exit(data, "North texture does not have .xpm extension");
+	if (data->elements.so && !has_xpm_extension(data->elements.so))
+		error_and_exit(data, "South texture does not have .xpm extension");
+	if (data->elements.we && !has_xpm_extension(data->elements.we))
+		error_and_exit(data, "West texture does not have .xpm extension");
+	if (data->elements.ea && !has_xpm_extension(data->elements.ea))
+		error_and_exit(data, "East texture does not have .xpm extension");
 }
 
-void validate_each_texture(t_data *data, char *path)
+void	validate_each_texture(t_data *data, char *path)
 {
-    int fd;
+	int	fd;
 
-    fd = open(path, O_RDONLY);
-    is_empty_string(path);
-    check_xpm_extension(data);
-    if (fd < 0)
-        error_and_exit(data,"Error: Failure to open texture file");
-    close(fd);
-}   
+	fd = open(path, O_RDONLY);
+	is_empty_string(path);
+	check_xpm_extension(data);
+	if (fd < 0)
+		error_and_exit(data, "Failure to open texture file");
+	close(fd);
+}
 
-void validate_textures(t_data *data)
+void	validate_textures(t_data *data)
 {
-    validate_each_texture(data,data->elements.no);
-    validate_each_texture(data,data->elements.so);
-    validate_each_texture(data,data->elements.we);
-    validate_each_texture(data,data->elements.ea);
+	validate_each_texture(data, data->elements.no);
+	validate_each_texture(data, data->elements.so);
+	validate_each_texture(data, data->elements.we);
+	validate_each_texture(data, data->elements.ea);
 }

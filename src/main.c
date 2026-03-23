@@ -26,25 +26,18 @@ int	main(int c, char **v)
 
 	init_data(&data);
 	check_file(c, v, &data);
-	print_line_list(data.line);
-
 	parse_data(&data);
 	check_map_characters(&data);
 	check_player_count(&data);
 	check_map_closed(&data);
-    validate_textures(&data);
-
-	printf("NO texture path: %s\n", data.elements.no);
-	printf("SO texture path: %s\n", data.elements.so);
-	printf("WE texture path: %s\n", data.elements.we);
-	printf("EA texture path: %s\n", data.elements.ea);
-	printf("Floor color: 0x%06X\n", data.elements.f_color);
-	printf("Ceiling color: 0x%06X\n", data.elements.c_color);
-	
-	// check_map_characters(&data);
-	// check_player_count(&data);
-	// check_map_closed(&data);
-
+	validate_textures(&data);
+	init_player_direction(&data);
+	init_mlx(&data);
+	init_screen(&data);
+	init_textures(&data);
+	init_hooks(&data);
+	mlx_loop_hook(data.mlx.mlx_ptr, render_frame, &data);
+	mlx_loop(data.mlx.mlx_ptr);
 	free_data(&data);
 	return (0);
 }
@@ -80,7 +73,8 @@ int	main(int c, char **v)
 // void	*mlx;
 	// void	*win;
 
-	// Very Good but we will use this after the parsing (it can contain leaks if my memory is good)
+	// Very Good but we will use this after the parsing 
+	//(it can contain leaks if my memory is good)
 
 	// mlx = mlx_init();
 	// win = mlx_new_window(mlx, 800, 600, "cub3d");

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_file.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bjaparid <bjaparid@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 18:53:16 by yabou-da          #+#    #+#             */
-/*   Updated: 2026/02/06 13:10:01 by bjaparid         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   2_check_file.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2025/11/27 18:53:16 by username         #+#    #+#              */
+/*   Updated: 2026/03/23 00:17:48 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	check_name(int c, char **v)
 		exit(1);
 	}
 	len = ft_strlen(v[1]);
-	// i dont handle when a file is just named '.cub'
 	if (len < 4 || ft_strncmp(".cub", &v[1][len - 4], 4) != 0)
 	{
 		ft_putstr_fd("Error\nInvalid file extension (expected .cub)\n", 2);
 		exit(1);
 	}
 }
+
 // open the file to test if it's ok
 void	open_test(char *map)
 {

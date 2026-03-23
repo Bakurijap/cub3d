@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 static void	*ft_free(char **str)
 {
 	int		i;
@@ -27,25 +26,25 @@ static void	*ft_free(char **str)
 	return (NULL);
 }
 
-static char **allocation(char const *s, char c)
+static char	**allocation(char const *s, char c)
 {
-    int i = 0;
-    int n = 0;
-    char **split;
+	int		i;
+	int		n;
+	char	**split;
 
-    while (s[i])
-    {
-        if ((i == 0 || s[i - 1] == c) && (s[i] != c))
-            n++;
-        i++;
-    }
-
-    split = malloc((n + 1) * sizeof(char *));
-    if (!split)
-        return NULL;
-    return split;
+	i = 0;
+	n = 0;
+	while (s[i])
+	{
+		if ((i == 0 || s[i - 1] == c) && (s[i] != c))
+			n++;
+		i++;
+	}
+	split = malloc((n + 1) * sizeof(char *));
+	if (!split)
+		return (NULL);
+	return (split);
 }
-
 
 static char	*append(char const *s, char c, int *k)
 {
@@ -78,18 +77,18 @@ char	**ft_split(char const *s, char c)
 	split = allocation(s, c);
 	if (split == NULL)
 		return (NULL);
-    while (s[k])
-    {
-        if ((k == 0 || s[k - 1] == c) && s[k] != c)
-        {
-            mot = append(s, c, &k);
-            if (!mot)
-                return (ft_free(split));
-            split[i++] = mot;
-        }
-        else
-            k++;
-    }
+	while (s[k])
+	{
+		if ((k == 0 || s[k - 1] == c) && s[k] != c)
+		{
+			mot = append(s, c, &k);
+			if (!mot)
+				return (ft_free(split));
+			split[i++] = mot;
+		}
+		else
+			k++;
+	}
 	split[i] = NULL;
 	return (split);
 }

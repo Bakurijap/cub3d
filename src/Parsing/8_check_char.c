@@ -42,8 +42,8 @@ void	check_player_count(t_data *data)
 
 void	check_map_characters(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	c;
 
 	i = 0;
