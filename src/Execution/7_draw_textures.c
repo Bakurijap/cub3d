@@ -12,16 +12,14 @@
 
 #include "../../include/cube3d.h"
 
-void	draw_wall_texture(t_data *data, t_ray *ray, int x)
+static void	draw_texture_loop(t_data *data, t_tex *tex, t_ray *ray, int x)
 {
-	t_tex	*tex;
 	double	step;
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
 	int		y;
 
-	tex = select_texture(data, ray);
 	tex_x = get_tex_x(data, ray, tex);
 	step = (double)tex->height / ray->line_height;
 	tex_pos = (ray->draw_start - HEIGHT / 2
@@ -34,10 +32,19 @@ void	draw_wall_texture(t_data *data, t_ray *ray, int x)
 			tex_y = 0;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		pixel_put(&data->screen, x, y, get_texture_pixel(tex, tex_x, tex_y));
+		pixel_put(&data->screen, x, y,
+			get_texture_pixel(tex, tex_x, tex_y));
 		tex_pos += step;
 		y++;
 	}
+}
+
+void	draw_wall_texture(t_data *data, t_ray *ray, int x)
+{
+	t_tex	*tex;
+
+	tex = select_texture(data, ray);
+	draw_texture_loop(data, tex, ray, x);
 }
 
 double	get_wall_x(t_data *data, t_ray *ray)
