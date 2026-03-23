@@ -1,13 +1,13 @@
-   WE                            textures/eagle.xpm 
-NO      textures/grey_stone.xpm
+   WE                            textures/colorstone.xpm 
+NO      textures/greystone.xpm
 
 
 
-SO textures/red_brick.xpm
+SO textures/redbrick.xpm
 
 F   69, 222, 199
 
-EA textures/mossy.xpm
+EA textures/wood.xpm
 
 
 
