@@ -19,7 +19,7 @@ void	check_name(int c, char **v)
 
 	if (c != 2)
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments", 2);
+		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 		exit(1);
 	}
 	len = ft_strlen(v[1]);
